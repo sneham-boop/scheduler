@@ -8,7 +8,7 @@ export default function InterviewerList({ interviewers, interviewer, setIntervie
       <h4 className="interviewers__header text--light">Interviewer</h4>
       <ul className="interviewers__list">
         {interviewers.map((i)=>{
-          return <InterviewerListItem key={i.id} setInterviewer={setInterviewer} selected={i.id === interviewer} {...i}/>
+          return <InterviewerListItem key={i.id} setInterviewer={()=>setInterviewer(i.id)} selected={i.id === interviewer} {...i}/>
         })}
       </ul>
     </section>
