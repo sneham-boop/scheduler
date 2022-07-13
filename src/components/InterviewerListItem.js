@@ -10,14 +10,12 @@ export default function InterviewerListItem({
   setInterviewer,
 }) {
   const className = classNames("interviewers__item", {"interviewers__item--selected" : selected});
-  console.log(className)
   return (
-    <li className={className}>
+    <li className={className} onClick={()=>{setInterviewer(id)}} >
       <img
         className="interviewers__item-image"
         src={avatar}
         alt={name}
-        onClick={()=>{setInterviewer(id)}}
       />
       {selected && <span>{name}</span>}
     </li>
