@@ -20,7 +20,7 @@ export const getInterview = (state, interview) => {
   const id = interview.interviewer;
 
   for (const interviewer in interviewers) {
-    if (interviewer == id) {
+    if (parseInt(interviewer) === id) {
       int.interviewer = interviewers[interviewer];
     }
   }
