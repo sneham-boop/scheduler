@@ -11,3 +11,18 @@ export const getAppointmentsForDay = (state, day) => {
   });
   return appointmentsForDay;
 };
+
+export const getInterview = (state, interview) => {
+  if (interview === null) return null;
+
+  const { interviewers } = state;
+  let int = { ...interview };
+  const id = interview.interviewer;
+
+  for (const interviewer in interviewers) {
+    if (interviewer == id) {
+      int.interviewer = interviewers[interviewer];
+    }
+  }
+  return int;
+};
