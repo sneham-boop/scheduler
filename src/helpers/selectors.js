@@ -26,3 +26,17 @@ export const getInterview = (state, interview) => {
   }
   return int;
 };
+
+export const getInterviewersForDay = (state, day) => {
+  const { days, interviewers } = state;
+  const interviewersForDay = [];
+
+  days.map((element) => {
+    if (element.name === day) {
+      element.interviewers.map((i) =>
+        interviewersForDay.push(interviewers[i])
+      );
+    }
+  });
+  return interviewersForDay;
+};

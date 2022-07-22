@@ -26,7 +26,6 @@ export default function Application() {
         const appointments = all[1].data;
         const interviewers = all[2].data;
 
-        console.log(interviewers);
         setState((prev) => ({ ...prev, days, appointments, interviewers }));
       }
     );
