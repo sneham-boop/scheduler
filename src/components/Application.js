@@ -32,15 +32,35 @@ export default function Application() {
       [id]: appointment,
     };
 
-    const saveAppointments = axios.put(`/api/appointments/${id}`, {
+    const saveAppointment = axios.put(`/api/appointments/${id}`, {
       interview,
     });
-    return Promise.all([saveAppointments])
+    return Promise.all([saveAppointment])
       .then((all) => all[0].status)
       .then((status) => {
         status === 204 && setState({ ...state, appointments });
       });
   };
+
+  const cancelInterview = (id) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    const deleteAppointment = axios.delete(`/api/appointments/${id}`);
+    
+    return Promise.all([deleteAppointment])
+      .then((all) => all[0].status)
+      .then((status) => {
+        status === 204 && setState({ ...state, appointments });
+      });
+  }
 
   useEffect(() => {
     const daysRequest = axios.get("/api/days");
@@ -86,6 +106,7 @@ export default function Application() {
               interview={interview}
               interviewers={dailyInterviewers}
               bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
             />
           );
         })}
