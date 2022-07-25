@@ -1,7 +1,8 @@
 export const getAppointmentsForDay = (state, day) => {
   const { days, appointments } = state;
   const appointmentsForDay = [];
-
+  
+  // eslint-disable-next-line
   days.map((element) => {
     if (element.name === day) {
       element.appointments.map((apt) =>
@@ -31,11 +32,10 @@ export const getInterviewersForDay = (state, day) => {
   const { days, interviewers } = state;
   const interviewersForDay = [];
 
+  // eslint-disable-next-line
   days.map((element) => {
     if (element.name === day) {
-      element.interviewers.map((i) =>
-        interviewersForDay.push(interviewers[i])
-      );
+      element.interviewers.map((i) => interviewersForDay.push(interviewers[i]));
     }
   });
   return interviewersForDay;
