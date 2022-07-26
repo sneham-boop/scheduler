@@ -11,6 +11,22 @@ const useApplicationData = () => {
 
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
+  const updateSpots = () => {
+    setState((prev) => {
+      const { day, appointments, days } = prev;
+      let spots = 0;
+      for (const d of days) {
+        if (d.name === day) {
+          for (const id of d.appointments) {
+            appointments[id].interview === null && spots++;
+            d.spots = spots;
+          }
+        }
+      }
+      return { ...prev, days };
+    });
+  };
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -29,7 +45,8 @@ const useApplicationData = () => {
       .then((all) => all[0].status)
       .then((status) => {
         status === 204 && setState({ ...state, appointments });
-      });
+      })
+      .then(() => updateSpots());
   };
 
   const cancelInterview = (id) => {
@@ -49,7 +66,8 @@ const useApplicationData = () => {
       .then((all) => all[0].status)
       .then((status) => {
         status === 204 && setState({ ...state, appointments });
-      });
+      })
+      .then(() => updateSpots());
   };
 
   useEffect(() => {

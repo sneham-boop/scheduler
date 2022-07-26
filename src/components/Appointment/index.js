@@ -32,17 +32,28 @@ export default function Appointment(props) {
     };
 
     transition(SAVING, true);
-    props.bookInterview(props.id, interview).then(() => {
-      transition(SHOW);
-    })
-    .catch((error)=>transition(ERROR_SAVE, true));
+    props
+      .bookInterview(props.id, interview)
+      .then(() => {
+        transition(SHOW);
+      })
+      .catch((error) => {
+        transition(ERROR_SAVE, true);
+        console.log(error);
+      });
   };
 
   const deleteInterview = () => {
     transition(DELETING, true);
-    props.cancelInterview(props.id).then(() => {
-      transition(EMPTY);
-    }).catch((error)=>transition(ERROR_DELETE, true));
+    props
+      .cancelInterview(props.id)
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch((error) => {
+        transition(ERROR_DELETE, true);
+        console.log(error);
+      });
   };
 
   return (
@@ -82,10 +93,12 @@ export default function Appointment(props) {
           onConfirm={() => deleteInterview()}
         />
       )}
-      {mode === ERROR_SAVE && <Error message="Could not save appointment."
-      onClose={()=>back()}/>}
-      {mode === ERROR_DELETE && <Error message="Could not delete appointment."
-      onClose={()=>back()}/>}
+      {mode === ERROR_SAVE && (
+        <Error message="Could not save appointment." onClose={() => back()} />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error message="Could not delete appointment." onClose={() => back()} />
+      )}
     </article>
   );
 }
