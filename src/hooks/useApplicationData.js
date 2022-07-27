@@ -13,7 +13,7 @@ const useApplicationData = () => {
 
   const updateSpots = () => {
     setState((prev) => {
-      const { day, appointments, days } = prev;
+      const { day, appointments, days } = {...prev};
       let spots = 0;
       for (const d of days) {
         if (d.name === day) {
