@@ -1,9 +1,9 @@
+// Returns an array of appointments for the given day
 export const getAppointmentsForDay = (state, day) => {
   const { days, appointments } = state;
   const appointmentsForDay = [];
-  
-  // eslint-disable-next-line
-  days.map((element) => {
+
+  days.forEach((element) => {
     if (element.name === day) {
       element.appointments.map((apt) =>
         appointmentsForDay.push(appointments[apt])
@@ -13,12 +13,15 @@ export const getAppointmentsForDay = (state, day) => {
   return appointmentsForDay;
 };
 
+// Returns an object with the full interviewer object added 
+// to the interview data replacing the id of the 
+// interviewer
 export const getInterview = (state, interview) => {
   if (interview === null) return null;
 
   const { interviewers } = state;
   let int = { ...interview };
-  const id = interview.interviewer;
+  const id = int.interviewer;
 
   for (const interviewer in interviewers) {
     if (parseInt(interviewer) === id) {
@@ -28,12 +31,12 @@ export const getInterview = (state, interview) => {
   return int;
 };
 
+// Returns an array of interviewers for the given day
 export const getInterviewersForDay = (state, day) => {
   const { days, interviewers } = state;
   const interviewersForDay = [];
 
-  // eslint-disable-next-line
-  days.map((element) => {
+  days.forEach((element) => {
     if (element.name === day) {
       element.interviewers.map((i) => interviewersForDay.push(interviewers[i]));
     }

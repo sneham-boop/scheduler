@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+// This hook is used to manage modes for the appointment
+// component.
 const useVisualMode = (initial) => {
   const [mode, setMode] = useState(initial);
   const [prevMode, setPrevMode] = useState([initial]);
