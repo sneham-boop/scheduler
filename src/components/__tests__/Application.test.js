@@ -9,8 +9,6 @@ import {
 
 import Application from "components/Application";
 
-import { axios } from "__mocks__/axios";
-
 afterEach(cleanup);
 
 it("defaults to Monday and changes the schedule when a new day is selected", () => {
