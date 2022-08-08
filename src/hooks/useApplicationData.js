@@ -42,12 +42,11 @@ const useApplicationData = () => {
     const saveAppointment = axios.put(`/api/appointments/${id}`, {
       interview,
     });
-    return Promise.all([saveAppointment])
-      .then((all) => all[0].status)
-      .then((status) => {
-        status === 204 && setState({ ...state, appointments });
-      })
-      .then(() => updateSpots());
+
+    return saveAppointment.then((response) => {
+      response.status === 204 && setState({ ...state, appointments });
+      updateSpots();
+    });
   };
 
   const cancelInterview = (id) => {
@@ -63,19 +62,10 @@ const useApplicationData = () => {
 
     const deleteAppointment = axios.delete(`/api/appointments/${id}`);
 
-    return Promise.all([deleteAppointment])
-      .then((all) => all[0].status)
-      .then((status) => {
-        status === 204 && setState({ ...state, appointments });
-      })
-      .then(() => updateSpots());
-
-    // return deleteAppointment.then((status) => {
-    //   status === 204 &&
-    //     setState({ ...state, appointments }, () => {
-    //       updateSpots();
-    //     });
-    // });
+    return deleteAppointment.then((response) => {
+      response.status === 204 && setState({ ...state, appointments });
+      updateSpots();
+    });
   };
 
   useEffect(() => {
