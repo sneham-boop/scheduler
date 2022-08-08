@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// This hook is used to manage state for the application. 
+// This hook is used to manage state for the application.
 const useApplicationData = () => {
   const [state, setState] = useState({
     days: [],
@@ -14,7 +14,7 @@ const useApplicationData = () => {
 
   const updateSpots = () => {
     setState((prev) => {
-      const { day, appointments, days } = {...prev};
+      const { day, appointments, days } = { ...prev };
       let spots = 0;
       for (const d of days) {
         if (d.name === day) {
@@ -69,6 +69,13 @@ const useApplicationData = () => {
         status === 204 && setState({ ...state, appointments });
       })
       .then(() => updateSpots());
+
+    // return deleteAppointment.then((status) => {
+    //   status === 204 &&
+    //     setState({ ...state, appointments }, () => {
+    //       updateSpots();
+    //     });
+    // });
   };
 
   useEffect(() => {
