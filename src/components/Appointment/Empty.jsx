@@ -8,6 +8,7 @@ export default function Empty({ onAdd }) {
         src="images/add.png"
         alt="Add"
         onClick={onAdd}
+        data-testid="add"
       />
     </main>
   );
