@@ -5,6 +5,8 @@ import { useState } from "react";
 const useVisualMode = (initial) => {
   const [mode, setMode] = useState(initial);
   const [prevMode, setPrevMode] = useState([initial]);
+
+  // Transtion to a new mode for appointment component
   const transition = (newMode, replace = false) => {
     if (!replace) {
       setPrevMode((prev) => {
@@ -18,6 +20,7 @@ const useVisualMode = (initial) => {
     setMode(newMode);
   };
 
+  // Go back a mode
   const back = () => {
     if (prevMode.length > 1) {
       setPrevMode((prev) => prev.slice(0, prev.length - 1));

@@ -1,3 +1,7 @@
+// This fixture includes mock data and functions for axios while testing
+// with jest
+
+// Mock data
 const fixtures = {
   days: [
     {
@@ -53,6 +57,7 @@ const fixtures = {
   },
 };
 
+// Mock axios functions
 export default {
   get: jest.fn((url) => {
     if (url === "/api/days") {

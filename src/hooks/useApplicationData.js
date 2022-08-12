@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// This hook is used to manage state for the application.
+// This custom hook is used to manage state for the application.
 const useApplicationData = () => {
   const [state, setState] = useState({
     days: [],
@@ -12,6 +12,8 @@ const useApplicationData = () => {
 
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
+  // Change number of spots when a new interview is booked
+  // or an existing interview is deleted
   const updateSpots = () => {
     setState((prev) => {
       const { day, appointments, days } = { ...prev };
@@ -28,6 +30,7 @@ const useApplicationData = () => {
     });
   };
 
+  // Book an interview and update state to reflect change
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -49,6 +52,7 @@ const useApplicationData = () => {
     });
   };
 
+  // Cancel an interview and update state to reflect change
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],
@@ -68,6 +72,7 @@ const useApplicationData = () => {
     });
   };
 
+  // Load initial data from database to state
   useEffect(() => {
     const daysRequest = axios.get("/api/days");
     const appointmentsRequest = axios.get("/api/appointments");

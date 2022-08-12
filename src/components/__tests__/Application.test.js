@@ -40,9 +40,9 @@ describe("Application", () => {
     const appointment = appointments[0];
     fireEvent.click(getByAltText(appointment, "Add"));
     expect(
-      getByPlaceholderText(appointment, /enter Student Name/i)
+      getByPlaceholderText(appointment, /enter student name/i)
     ).toBeInTheDocument();
-    fireEvent.change(getByPlaceholderText(appointment, /enter Student Name/i), {
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: {
         value: "Lydia Miller-Jones",
       },
@@ -79,7 +79,7 @@ describe("Application", () => {
     );
     fireEvent.click(getByAltText(appointment, "Edit"));
     expect(getByText(appointment, "Save")).toBeInTheDocument();
-    fireEvent.change(getByPlaceholderText(appointment, /enter Student Name/i), {
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: {
         value: "Lydia Miller-Jones",
       },
@@ -101,7 +101,7 @@ describe("Application", () => {
     );
     fireEvent.click(getByAltText(appointment, "Edit"));
     expect(getByText(appointment, "Save")).toBeInTheDocument();
-    fireEvent.change(getByPlaceholderText(appointment, /enter Student Name/i), {
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: {
         value: "Lydia Miller-Jones",
       },

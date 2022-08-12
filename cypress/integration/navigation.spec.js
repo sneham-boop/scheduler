@@ -1,18 +1,17 @@
 describe("Navigation", () => {
-  it.skip("should visit root", () => {
+
+  beforeEach(()=>{
+    cy.request("GET", "/api/debug/reset");
     cy.visit("/");
   });
 
-  it.skip("should navigate to Tuesday", () => {
-    cy.visit("/");
+  it("should navigate to Tuesday", () => {
     cy.contains("[data-testid=day]", "Tuesday")
       .click()
       .should("have.class", "day-list__item--selected");
   });
 
-  it.skip("should book an interview", () => {
-    cy.request("GET", "/api/debug/reset");
-    cy.visit("/");
+  it("should book an interview", () => {
     cy.contains("[data-testid=day]", "Tuesday");
     cy.get("[alt=Add]").first().click();
     cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones");
@@ -23,8 +22,6 @@ describe("Navigation", () => {
   });
 
   it("should edit an interview", () => {
-    cy.request("GET", "/api/debug/reset");
-    cy.visit("/");
     cy.contains("[data-testid=day]", "Tuesday");
     cy.contains(".appointment__card--show", "Archie Cohen").wait(1000);
     cy.get("[alt=Edit]").first().click({ force: true });
@@ -38,8 +35,6 @@ describe("Navigation", () => {
   });
 
   it("should delete an interview", () => {
-    cy.request("GET", "/api/debug/reset");
-    cy.visit("/");
     cy.contains("[data-testid=day]", "Tuesday");
     cy.contains(".appointment__card--show", "Archie Cohen").wait(1000);
     cy.get("[alt=Delete]").first().click({ force: true }).wait(1000);
