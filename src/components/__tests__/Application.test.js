@@ -18,6 +18,7 @@ import Application from "components/Application";
 
 afterEach(cleanup);
 describe("Application", () => {
+  // Global variables used for each test below
   let container;
   let day;
   let appointments;
