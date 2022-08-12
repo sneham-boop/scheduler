@@ -48,7 +48,7 @@ This application also supports testing via the Jest, Storybook and Cypress frame
 2. Run `yarn install` on your CLI to install all dependencies.
 
 ### Database Setup
-A test database (db) must be created with seed data in it. This must have been done in the steps for the scheduler-api above, but here are some steps below.
+A test database must be created with seed data in it to allow for data persistence. This must have been done in the steps for the scheduler-api above, but here are some steps below to make sure nothing was missed.
 
 1. Clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) repo. `cd scheduler-api`
 2. `npm install` to add all dependencies.
@@ -84,10 +84,13 @@ A test database (db) must be created with seed data in it. This must have been d
     - Confirm the correct data shows up in the new test database by using the command below in your psql CLI
     `SELECT * FROM days JOIN appointments ON appointments.day_id = days.id LEFT JOIN interviews ON interviews.appointment_id = appointments.id ORDER BY appointments.id;`. You should see a single appointment for Archie Cohen on Monday.
     - Next, we can run Cypress in our CLI for scheduler via `yarn run cypress`. 
+
+    
 ## Known issues
 
 1. This application has only been tested in Google Chrome so far therefore behavior could be unexpected in other browsers.
 2. The seed data is fake data.
 3. This setup process assumes user has PostgreSQL database from the scheduler API properly setup.
+4. There are currently no ways to trigger email updates to the interviewer or the student.
 
 
