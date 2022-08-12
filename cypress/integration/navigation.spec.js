@@ -1,6 +1,7 @@
+// Cypress end-to-end tests
 describe("Navigation", () => {
-
-  beforeEach(()=>{
+  // Reset state of db before each test and visit root.
+  beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
     cy.visit("/");
   });
