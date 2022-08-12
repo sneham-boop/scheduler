@@ -20,12 +20,20 @@ This application also supports testing via the Jest, Storybook and Cypress frame
 
 1. Main application page
 ![Main page](./documents/images/Main_page.png)
+
+
 2. Add a new appointment
 ![Add a new appointment](./documents/images/Add_a_new_apppointment.png)
+
+
 2. Edit or delete an existing appointment
 ![Edit or delete an existing appointment](./documents/images/Edit_or_delete.png)
+
+
 2. Edit an appointment
 ![Edit an appointment](./documents/images/Edit_existing_appointment.png)
+
+
 2. Delete an appointment
 ![Main page](./documents/images/Confirm_before_delete.png)
 
