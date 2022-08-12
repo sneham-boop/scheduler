@@ -7,7 +7,6 @@ import Appointment from "components/Appointment";
 afterEach(cleanup);
 
 describe("Appointment", () => {
-
   it("does something it is supposed to do", () => {
     // ...
   });

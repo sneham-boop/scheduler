@@ -91,7 +91,9 @@ describe("Application", () => {
   });
 
   it("shows the save error when failing to save an appointment", async () => {
-    axios.put.mockRejectedValueOnce("Test response - Shows the save error when failing to save an appointment");
+    axios.put.mockRejectedValueOnce(
+      "Test response - Shows the save error when failing to save an appointment"
+    );
 
     const appointment = appointments.find((app) =>
       queryByText(app, "Archie Cohen")
@@ -113,7 +115,9 @@ describe("Application", () => {
   });
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
-    axios.delete.mockRejectedValueOnce("Test response - Shows the delete error when failing to delete an existing appointment");
+    axios.delete.mockRejectedValueOnce(
+      "Test response - Shows the delete error when failing to delete an existing appointment"
+    );
 
     const appointment = appointments.find((app) =>
       queryByText(app, "Archie Cohen")

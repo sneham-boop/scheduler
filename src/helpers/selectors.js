@@ -13,8 +13,8 @@ export const getAppointmentsForDay = (state, day) => {
   return appointmentsForDay;
 };
 
-// Returns an object with the full interviewer object added 
-// to the interview data replacing the id of the 
+// Returns an object with the full interviewer object added
+// to the interview data replacing the id of the
 // interviewer
 export const getInterview = (state, interview) => {
   if (interview === null) return null;
