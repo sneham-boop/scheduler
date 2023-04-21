@@ -7,7 +7,11 @@ export default function InterviewerList(props) {
   const { interviewers, value, onChange } = props;
   return (
     <section className={styles.interviewers}>
-      <h4 className={styles["interviewers__header text--light"]}>Interviewer</h4>
+      <h4
+        className={`${styles["interviewers__header"]} ${styles["text--light"]}`}
+      >
+        Interviewer
+      </h4>
       <ul className={styles["interviewers__list"]}>
         {interviewers &&
           interviewers.map((interviewer) => {

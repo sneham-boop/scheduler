@@ -39,12 +39,14 @@ export default function Application() {
           src="images/logo.png"
           alt="Interview Scheduler"
         />
-        <hr className={styles["sidebar__separator sidebar--centered"]} />
+        <hr
+          className={`${styles["sidebar__separator"]} ${styles["sidebar--centered"]}`}
+        />
         <nav className={styles["sidebar__menu"]}>
           <DayList days={state.days} value={state.day} onChange={setDay} />
         </nav>
         <img
-          className={styles["sidebar__lhl sidebar--centered"]}
+          className={`${styles["sidebar__lhl"]} ${styles["sidebar--centered"]}`}
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />

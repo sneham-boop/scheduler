@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./styles.module.scss";
 
 export default function Empty({ onAdd }) {
   return (
-    <main className="appointment__add">
+    <main className={styles["appointment__add"]}>
       <img
-        className="appointment__add-button"
+        className={styles["appointment__add-button"]}
         src="images/add.png"
         alt="Add"
         onClick={onAdd}
