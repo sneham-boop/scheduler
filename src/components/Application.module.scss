@@ -1,4 +1,11 @@
 @import "../styles/variables.scss";
+// @import "~normalize.css/normalize.css";
+
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900");
+
+@import "../styles/reset.scss";
+
+@import "../styles/typography.scss";
 
 .sidebar {
   background-color: $dark-background;
@@ -35,4 +42,31 @@
   margin: 2rem 0;
   padding: 0 $spacing;
   width: 100%;
+  background-color: $black;
+}
+
+
+// body {
+//   font-family: $font-family;
+// }
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 960px) {
+  // html {
+  //   font-size: 12px;
+  // }
+
+  .layout {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  // html {
+  //   font-size: 10px;
+  // }
 }
