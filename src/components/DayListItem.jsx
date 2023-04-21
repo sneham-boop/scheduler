@@ -1,5 +1,5 @@
 import React from "react";
-import "components/DayListItem.scss";
+import styles from "./DayListItem.module.scss";
 import classNames from "classnames";
 
 export default function DayListItem({ name, spots, setDay, selected }) {
@@ -18,14 +18,14 @@ export default function DayListItem({ name, spots, setDay, selected }) {
 
   return (
     <li
-      className={dayClass}
+      className={styles[dayClass]}
       onClick={() => {
         setDay(name);
       }}
       data-testid="day"
     >
-      <h2 className="text--regular">{name}</h2>
-      <h3 className="text--light">{formatSpots()}</h3>
+      <h2 className={styles["text--regular"]}>{name}</h2>
+      <h3 className={styles["text--light"]}>{formatSpots()}</h3>
     </li>
   );
 }
