@@ -58,10 +58,9 @@ export default async function handler(req, res) {
       const appointment = await db
         .collection("appointments")
         .findOneAndUpdate(
-          { _id: new ObjectId(id) },
+          { id: id },
           { $set: { interview: interview } }
-        )
-        .toArray();
+        );
       res.json(appointment);
     }
   } catch (e) {
