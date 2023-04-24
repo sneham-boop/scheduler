@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./InterviewerListItem.module.scss";
-import classNames from "classnames";
 
 export default function InterviewerListItem({
   name,
@@ -8,12 +7,17 @@ export default function InterviewerListItem({
   selected,
   setInterviewer,
 }) {
-  const className = classNames("interviewers__item", {
-    "interviewers__item--selected": selected,
-  });
+  const itemSelected = selected ? "interviewers__item--selected" : "";
   return (
-    <li className={styles[className]} onClick={setInterviewer}>
-      <img className={styles["interviewers__item-image"]} src={avatar} alt={name} />
+    <li
+      className={`${styles["interviewers__item"]} ${styles[itemSelected]}`}
+      onClick={setInterviewer}
+    >
+      <img
+        className={styles["interviewers__item-image"]}
+        src={avatar}
+        alt={name}
+      />
       {selected && <span>{name}</span>}
     </li>
   );

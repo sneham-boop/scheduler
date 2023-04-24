@@ -1,12 +1,10 @@
 import React from "react";
 import styles from "./DayListItem.module.scss";
-import classNames from "classnames";
 
 export default function DayListItem({ name, spots, setDay, selected }) {
-  const dayClass = classNames("day-list__item", {
-    "day-list__item--selected": selected,
-    "day-list__item--full": spots === 0,
-  });
+
+  const daySelected = selected ? "day-list__item--selected" : "";
+  const dayFull = spots === 0 ? "day-list__item--full" : "";
 
   const formatSpots = () => {
     return spots === 0
@@ -18,7 +16,7 @@ export default function DayListItem({ name, spots, setDay, selected }) {
 
   return (
     <li
-      className={styles[dayClass]}
+      className={`${styles["day-list__item"]} ${styles[daySelected]} ${styles[dayFull]}`}
       onClick={() => {
         setDay(name);
       }}
