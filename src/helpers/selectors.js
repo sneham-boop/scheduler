@@ -4,12 +4,20 @@ export const getAppointmentsForDay = (state, day) => {
   const appointmentsForDay = [];
 
   days.forEach((element) => {
+    // if (element.name === day) {
+    //   element.appointments.map((apt) =>
+    //     appointmentsForDay.push(appointments[apt])
+    //   );
+    // }
     if (element.name === day) {
-      element.appointments.map((apt) =>
-        appointmentsForDay.push(appointments[apt])
-      );
+      appointments.forEach((appointment)=>{
+        if (element._id === appointment.day_id) {
+          appointmentsForDay.push(appointment)
+        }
+      })
     }
   });
+  console.log("Here are the appointments for today.", appointmentsForDay);
   return appointmentsForDay;
 };
 
