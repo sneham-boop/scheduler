@@ -24,10 +24,20 @@ export default async function handler(req, res) {
       }
       console.log("Appt id to be deleted received at server.", id);
 
-      const result = await db
-        .collection("appointments")
-        .deleteOne({ _id: new ObjectId(id) });
-      if (result.deletedCount === 1)
+      const result = await db.collection("appointments").findOneAndUpdate(
+        { id: parseInt(id) },
+        [
+          {
+            $set: {
+              "interview": null,
+            },
+          }
+        ],
+        {
+          returnDocument: "after",
+        }
+      );
+      if (result.modifiedCount === 1)
         res.json({
           message: `Successfully deleted document with id ${id}`,
           success: true,
@@ -54,14 +64,33 @@ export default async function handler(req, res) {
     if (req.method === "PUT") {
       const { id } = req.query;
       const { interview } = req.body;
-      console.log("Update request for appointment received, id & interview", id, interview)
-      const appointment = await db
-        .collection("appointments")
-        .findOneAndUpdate(
-          { id: id },
-          { $set: { interview: interview } }
-        );
-      res.json(appointment);
+      // console.log(
+      //   "Update request for appointment received, id & interview",
+      //   parseInt(id),
+      //   interview
+      // );
+
+      const response = await db.collection("appointments").findOneAndUpdate(
+        { id: parseInt(id) },
+        [
+          {
+            $set: {
+              "interview.student": interview.student,
+            },
+          },
+          {
+            $set: {
+              "interview.interviewer": interview.interviewer,
+            },
+          },
+        ],
+        {
+          upsert: true,
+          returnDocument: "after",
+        }
+      );
+      console.log(response);
+      res.json(response.value);
     }
   } catch (e) {
     console.error("We couldn't connect to the database.", e);
