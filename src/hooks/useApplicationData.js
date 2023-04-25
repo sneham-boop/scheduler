@@ -226,12 +226,12 @@ const useApplicationData = () => {
         const days = all[0].data;
         const appointments = all[1].data;
         const interviewers = all[2].data;
-        // console.log("Got data", days, appointments, interviewers)
+        console.log("Got data", days, appointments, interviewers)
         setState((prev) => ({ ...prev, days, appointments, interviewers }));
       }
     );
   }, []);
-console.log(state);
+
   return { state, setDay, bookInterview, cancelInterview };
 };
 
