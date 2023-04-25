@@ -7,7 +7,7 @@ export default function DayList({ days, value, onChange }) {
       {days.map((d) => {
         return (
           <DayListItem
-            key={d.id}
+            key={d._id}
             selected={d.name === value}
             setDay={onChange}
             {...d}
