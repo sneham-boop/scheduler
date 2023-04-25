@@ -29,15 +29,30 @@ export default async function handler(req, res) {
         [
           {
             $set: {
-              "interview": null,
+              interview: null,
             },
-          }
+          },
         ],
         {
           returnDocument: "after",
         }
       );
-      if (result.modifiedCount === 1)
+
+      const daysUpdate = await db.collection("days").findOneAndUpdate(
+        { appointments: id },
+        {
+          $inc: {
+            spots: 1,
+          },
+        },
+        {
+          returnDocument: "after",
+        }
+      );
+
+      console.log("Deleted a document", result, daysUpdate);
+
+      if (result.modifiedCount === 1 && daysUpdate.modifiedCount === 1)
         res.json(result);
       else
         res.json({
@@ -86,7 +101,7 @@ export default async function handler(req, res) {
           returnDocument: "after",
         }
       );
-      // console.log(response);
+
       res.json(response);
     }
   } catch (e) {
