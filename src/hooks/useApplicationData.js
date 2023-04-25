@@ -231,7 +231,7 @@ const useApplicationData = () => {
       }
     );
   }, []);
-
+console.log(state);
   return { state, setDay, bookInterview, cancelInterview };
 };
 
