@@ -33,7 +33,7 @@ export default function Application() {
 
   return (
     <main className={styles.layout}>
-      <section className={styles.sidebar}>
+      {/* <section className={styles.sidebar}>
         <img
           className={styles["sidebar--centered"]}
           src="images/logo.png"
@@ -54,7 +54,7 @@ export default function Application() {
       <section className={styles["schedule"]}>
         {appointments}
         <Appointment key="last" time="5pm" />
-      </section>
+      </section> */}
     </main>
   );
 } 

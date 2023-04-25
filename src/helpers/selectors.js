@@ -10,14 +10,14 @@ export const getAppointmentsForDay = (state, day) => {
     //   );
     // }
     if (element.name === day) {
-      appointments.forEach((appointment)=>{
+      appointments.forEach((appointment) => {
         if (element._id === appointment.day_id) {
-          appointmentsForDay.push(appointment)
+          appointmentsForDay.push(appointment);
         }
-      })
+      });
     }
   });
-  console.log("Here are the appointments for today.", appointmentsForDay);
+  // console.log("Here are the appointments for today.", appointmentsForDay);
   return appointmentsForDay;
 };
 
@@ -25,29 +25,40 @@ export const getAppointmentsForDay = (state, day) => {
 // to the interview data replacing the id of the
 // interviewer
 export const getInterview = (state, interview) => {
-  if (interview === null) return null;
+  if (interview.interviewer_id === null) return null;
 
   const { interviewers } = state;
   let int = { ...interview };
-  const id = int.interviewer;
+  const id = int.interviewer_id;
 
-  for (const interviewer in interviewers) {
-    if (parseInt(interviewer) === id) {
-      int.interviewer = interviewers[interviewer];
+  for (const interviewer of interviewers) {
+    if (interviewer._id === id) {
+      int.interviewer = interviewer;
     }
   }
+  // console.log("Here's the interviewer", int);
   return int;
 };
 
 // Returns an array of interviewers for the given day
-export const getInterviewersForDay = (state, day) => {
+export const getInterviewersForDay = (state, currentDay) => {
   const { days, interviewers } = state;
   const interviewersForDay = [];
 
-  days.forEach((element) => {
-    if (element.name === day) {
-      element.interviewers.map((i) => interviewersForDay.push(interviewers[i]));
+  days.forEach((day) => {
+    // if (element.name === day) {
+    //   element.interviewers.map((i) => interviewersForDay.push(interviewers[i]));
+    // }
+    if (day.name === currentDay) {
+      day.interviewers.map((id) => {
+        interviewers.filter((interviewer) => {
+          if (id === interviewer._id) {
+            interviewersForDay.push(interviewer);
+          }
+        });
+      });
     }
   });
+  // console.log("Here's the interviewers for the day", interviewersForDay);
   return interviewersForDay;
 };
