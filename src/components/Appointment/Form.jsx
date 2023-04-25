@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import InterviewerList from "components/InterviewerList";
-import Button from "components/Button";
+import InterviewerList from "../InterviewerList";
+import Button from "../Button";
+import styles from "./styles.module.scss";
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
@@ -40,11 +41,13 @@ export default function Form(props) {
   };
 
   return (
-    <main className="appointment__card appointment__card--create">
-      <section className="appointment__card-left">
+    <main
+      className={`${styles["appointment__card"]} ${styles["appointment__card--create"]}`}
+    >
+      <section className={styles["appointment__card-left"]}>
         <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
-            className="appointment__create-input text--semi-bold"
+            className={`${styles["appointment__create-input"]} ${styles["text--semi-bold"]}`}
             name="name"
             type="text"
             placeholder="Enter Student Name"
@@ -53,15 +56,15 @@ export default function Form(props) {
             data-testid="student-name-input"
           />
         </form>
-        <section className="appointment__validation">{error}</section>
+        <section className={styles["appointment__validation"]}>{error}</section>
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}
           onChange={setInterviewer}
         />
       </section>
-      <section className="appointment__card-right">
-        <section className="appointment__actions">
+      <section className={styles["appointment__card-right"]}>
+        <section className={styles["appointment__actions"]}>
           <Button danger onClick={cancel}>
             Cancel
           </Button>

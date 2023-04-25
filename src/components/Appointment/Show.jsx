@@ -1,25 +1,28 @@
 import React from "react";
+import styles from "./styles.module.scss";
 
 export default function Show({ student, interviewer, onEdit, onDelete }) {
   return (
-    <main className="appointment__card appointment__card--show">
-      <section className="appointment__card-left">
-        <h2 className="text--regular">{student}</h2>
-        <section className="interviewer">
-          <h4 className="text--light">Interviewer</h4>
-          <h3 className="text--regular">{interviewer.name}</h3>
+    <main
+      className={`${styles["appointment__card"]} ${styles["appointment__card--show"]}`}
+    >
+      <section className={styles["appointment__card-left"]}>
+        <h2 className={styles["text--regular"]}>{student}</h2>
+        <section className={styles["interviewer"]}>
+          <h4 className={styles["text--light"]}>Interviewer</h4>
+          <h3 className={styles["text--regular"]}>{interviewer.name}</h3>
         </section>
       </section>
-      <section className="appointment__card-right">
-        <section className="appointment__actions">
+      <section className={styles["appointment__card-right"]}>
+        <section className={styles["appointment__actions"]}>
           <img
-            className="appointment__actions-button"
+            className={styles["appointment__actions-button"]}
             src="images/edit.png"
             alt="Edit"
             onClick={onEdit}
           />
           <img
-            className="appointment__actions-button"
+            className={styles["appointment__actions-button"]}
             src="images/trash.png"
             alt="Delete"
             onClick={onDelete}
