@@ -172,6 +172,7 @@ const useApplicationData = () => {
       }
       return { ...prev, days };
     });
+    console.log("State after update",state);
   };
 
   // Book an interview and update state to reflect change
@@ -191,7 +192,10 @@ const useApplicationData = () => {
     });
 
     return saveAppointment.then((response) => {
-      response.status === 204 && setState({ ...state, appointments });
+      
+      response.status === 200 && setState({ ...state, appointments });
+      console.log("Appointments after book interview", appointments)
+      console.log(response);
       updateSpots();
     });
   };
@@ -211,7 +215,9 @@ const useApplicationData = () => {
     const deleteAppointment = axios.delete(`/api/appointments/${id}`);
 
     return deleteAppointment.then((response) => {
-      response.status === 204 && setState({ ...state, appointments });
+      response.status === 200 && setState({ ...state, appointments });
+      console.log("Appointments after book interview", appointments)
+      console.log(response);
       updateSpots();
     });
   };

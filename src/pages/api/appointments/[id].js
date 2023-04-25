@@ -38,10 +38,7 @@ export default async function handler(req, res) {
         }
       );
       if (result.modifiedCount === 1)
-        res.json({
-          message: `Successfully deleted document with id ${id}`,
-          success: true,
-        });
+        res.json(result);
       else
         res.json({
           message: `Failed to delete this appointment ${id}`,
@@ -89,8 +86,8 @@ export default async function handler(req, res) {
           returnDocument: "after",
         }
       );
-      console.log(response);
-      res.json(response.value);
+      // console.log(response);
+      res.json(response);
     }
   } catch (e) {
     console.error("We couldn't connect to the database.", e);
