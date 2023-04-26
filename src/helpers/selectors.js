@@ -25,6 +25,7 @@ export const getAppointmentsForDay = (state, day) => {
 // to the interview data replacing the id of the
 // interviewer
 export const getInterview = (state, interview) => {
+  console.log("I got interview", interview)
   if (interview.interviewer_id === null) return null;
 
   const { interviewers } = state;
@@ -36,7 +37,7 @@ export const getInterview = (state, interview) => {
       int.interviewer = interviewer;
     }
   }
-  // console.log("Here's the interviewer", int);
+  console.log("Here's the interview", int);
   return int;
 };
 

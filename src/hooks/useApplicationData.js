@@ -32,15 +32,24 @@ const useApplicationData = () => {
 
   // Book an interview and update state to reflect change
   const bookInterview = (id, interview) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
+    const appointments = [...state.appointments];
+    const appointment = appointments.find((appt) => appt._id === id);
+    appointment.interview = { ...interview };
 
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
+    appointments.forEach((appt) => {
+      if (appt._id === id) appt = appointment;
+    });
+    console.log("appointments", appointments);
+
+    // const appointment = {
+    //   ...state.appointments[id],
+    //   interview: { ...interview },
+    // };
+
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment,
+    // };
 
     const saveAppointment = axios.put(`/api/appointments/${id}`, {
       interview,
@@ -50,7 +59,7 @@ const useApplicationData = () => {
       response.status === 200 && setState({ ...state, appointments });
       // console.log("Appointments after book interview", appointments)
       // console.log(response);
-      updateSpots();
+      // updateSpots();
     });
   };
 

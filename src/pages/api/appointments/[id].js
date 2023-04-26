@@ -61,29 +61,20 @@ export default async function handler(req, res) {
         });
     }
 
-    // Process a GET request for appointment
-    if (req.method === "GET") {
-      const { id } = req.query;
-      const appointment = await db
-        .collection("appointments")
-        .find({ _id: new ObjectId(id) })
-        .toArray();
-
-      res.json(appointment);
-    }
-
     // Process a PUT request for appointment
     if (req.method === "PUT") {
       const { id } = req.query;
       const { interview } = req.body;
-      // console.log(
-      //   "Update request for appointment received, id & interview",
-      //   parseInt(id),
-      //   interview
-      // );
+      console.log(
+        "Update request for appointment received, id & interview",
+        parseInt(id),
+        interview
+      );
 
+      // res.json({id, interview});
+      // return;
       const response = await db.collection("appointments").findOneAndUpdate(
-        { id: parseInt(id) },
+        { _id: new ObjectId(id) },
         [
           {
             $set: {
@@ -92,7 +83,7 @@ export default async function handler(req, res) {
           },
           {
             $set: {
-              "interview.interviewer": interview.interviewer,
+              "interview.interviewer_id": interview.interviewer,
             },
           },
         ],
@@ -101,6 +92,7 @@ export default async function handler(req, res) {
           returnDocument: "after",
         }
       );
+      console.log("Response back from database",response);
 
       res.json(response);
     }
