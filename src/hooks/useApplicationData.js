@@ -5,8 +5,8 @@ const useApplicationData = () => {
   const [state, setState] = useState({
     days: [],
     day: "Monday",
-    appointments: {},
-    interviewers: {},
+    appointments: [],
+    interviewers: [],
   });
 
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
@@ -86,7 +86,7 @@ const useApplicationData = () => {
         const days = all[0].data;
         const appointments = all[1].data;
         const interviewers = all[2].data;
-        console.log("Got data", days, appointments, interviewers);
+        // console.log("Got data", days, appointments, interviewers);
         setState((prev) => ({ ...prev, days, appointments, interviewers }));
       }
     );
@@ -94,6 +94,7 @@ const useApplicationData = () => {
 
   const getEmptySpots = (day_id) => {
     const { appointments } = state;
+    // console.log(state);
     let spots = 0;
     appointments.map((appointment) => {
       const { interview } = appointment;
