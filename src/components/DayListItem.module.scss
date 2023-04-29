@@ -5,17 +5,22 @@
   &__item {
     @include fade;
 
-    color: #8395a7;
+    color: $white;
     height: 5rem;
     padding-left: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    border-bottom: 1px solid $white;
+    h2 {
+      font-weight: $medium;
+    }
+  
     &:hover {
-      background-color: #ee5253;
+      background-color: $danger-color;
       cursor: pointer;
-      color: $dark-background;
+      color: $white;
+      transition: 0.3s;
     }
 
     &--selected {
@@ -23,7 +28,8 @@
       color: $dark-background;
 
       &:hover {
-        background-color: darken($white, 5%);
+        background-color: darken($white, 10%);
+        color: $dark-background;
       }
     }
 
