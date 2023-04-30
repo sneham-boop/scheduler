@@ -6,7 +6,7 @@ export default function Empty({ onAdd }) {
     <main className={styles["appointment__add"]}>
       <img
         className={styles["appointment__add-button"]}
-        src="images/add.png"
+        src="images/addsvg.svg"
         alt="Add"
         onClick={onAdd}
         data-testid="add"
