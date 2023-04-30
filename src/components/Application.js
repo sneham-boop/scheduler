@@ -10,6 +10,14 @@ import {
   getInterviewersForDay,
 } from "../helpers/selectors";
 
+import { Noto_Sans } from "next/font/google";
+
+const noto = Noto_Sans({
+  weight: ["900"],
+  style: ["normal"],
+  subsets: ["latin"],
+});
+
 export default function Application() {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
@@ -19,8 +27,8 @@ export default function Application() {
     (appointment) => {
       return (
         <Appointment
-          key={appointment.id}
-          id={appointment.id}
+          key={appointment._id}
+          id={appointment._id}
           time={appointment.time}
           interview={getInterview(state, appointment.interview)}
           interviewers={interviewers}
@@ -34,11 +42,14 @@ export default function Application() {
   return (
     <main className={styles.layout}>
       <section className={styles.sidebar}>
-        <img
-          className={styles["sidebar--centered"]}
-          src="images/logo.png"
-          alt="Interview Scheduler"
-        />
+        <div className={styles.logoContainer}>
+          <img
+            className={`${styles["sidebar--centered"]} ${styles["logo"]}`}
+            src="images/fullLogo.svg"
+            alt="Interview Scheduler"
+          />
+        </div>
+
         <hr
           className={`${styles["sidebar__separator"]} ${styles["sidebar--centered"]}`}
         />
@@ -47,7 +58,7 @@ export default function Application() {
         </nav>
         <img
           className={`${styles["sidebar__lhl"]} ${styles["sidebar--centered"]}`}
-          src="images/lhl.png"
+          src="images/shortLogo.svg"
           alt="Lighthouse Labs"
         />
       </section>
@@ -57,4 +68,4 @@ export default function Application() {
       </section>
     </main>
   );
-} 
+}

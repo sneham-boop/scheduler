@@ -33,6 +33,7 @@ $appointment-height: 11rem;
   }
 
   &__card {
+    margin-top: 1em;
     min-height: $appointment-height;
     margin-left: 3rem;
     border-radius: 0.5rem;
@@ -114,6 +115,7 @@ $appointment-height: 11rem;
       @include button-inactive--opacity;
       margin-right: 0.5rem;
       display: none;
+      filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 
       &:hover {
         @include button-active--opacity;

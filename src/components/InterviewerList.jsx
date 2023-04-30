@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export default function InterviewerList(props) {
   const { interviewers, value, onChange } = props;
-  // console.log(interviewers)
+  console.log(interviewers, value)
   return (
     <section className={styles.interviewers}>
       <h4
@@ -18,9 +18,9 @@ export default function InterviewerList(props) {
           interviewers.map((interviewer) => {
             return (
               <InterviewerListItem
-                key={interviewer.id}
-                setInterviewer={() => onChange(interviewer.id)}
-                selected={interviewer.id === value}
+                key={interviewer._id}
+                setInterviewer={() => onChange(interviewer._id)}
+                selected={interviewer._id === value}
                 {...interviewer}
               />
             );

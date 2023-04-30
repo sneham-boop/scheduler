@@ -29,15 +29,30 @@ export default async function handler(req, res) {
         [
           {
             $set: {
-              "interview": null,
+              interview: null,
             },
-          }
+          },
         ],
         {
           returnDocument: "after",
         }
       );
-      if (result.modifiedCount === 1)
+
+      const daysUpdate = await db.collection("days").findOneAndUpdate(
+        { appointments: id },
+        {
+          $inc: {
+            spots: 1,
+          },
+        },
+        {
+          returnDocument: "after",
+        }
+      );
+
+      console.log("Deleted a document", result, daysUpdate);
+
+      if (result.modifiedCount === 1 && daysUpdate.modifiedCount === 1)
         res.json(result);
       else
         res.json({
@@ -46,29 +61,20 @@ export default async function handler(req, res) {
         });
     }
 
-    // Process a GET request for appointment
-    if (req.method === "GET") {
-      const { id } = req.query;
-      const appointment = await db
-        .collection("appointments")
-        .find({ _id: new ObjectId(id) })
-        .toArray();
-
-      res.json(appointment);
-    }
-
     // Process a PUT request for appointment
     if (req.method === "PUT") {
       const { id } = req.query;
       const { interview } = req.body;
-      // console.log(
-      //   "Update request for appointment received, id & interview",
-      //   parseInt(id),
-      //   interview
-      // );
+      console.log(
+        "Update request for appointment received, id & interview",
+        parseInt(id),
+        interview
+      );
 
+      // res.json({id, interview});
+      // return;
       const response = await db.collection("appointments").findOneAndUpdate(
-        { id: parseInt(id) },
+        { _id: new ObjectId(id) },
         [
           {
             $set: {
@@ -77,7 +83,7 @@ export default async function handler(req, res) {
           },
           {
             $set: {
-              "interview.interviewer": interview.interviewer,
+              "interview.interviewer_id": interview.interviewer,
             },
           },
         ],
@@ -86,7 +92,8 @@ export default async function handler(req, res) {
           returnDocument: "after",
         }
       );
-      // console.log(response);
+      console.log("Response back from database",response);
+
       res.json(response);
     }
   } catch (e) {

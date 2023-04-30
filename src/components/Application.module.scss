@@ -9,10 +9,10 @@
 
 .sidebar {
   background-color: $dark-background;
-  box-shadow: 0px 4px 8px rgba($dark-background, 0.5);
   display: flex;
   flex-direction: column;
-  min-width: 18rem;
+  width: 35%;
+  // min-width: 40rem;
   padding: $spacing 0;
 
   &--centered {
@@ -32,7 +32,30 @@
 
   &__lhl {
     margin-top: 2rem;
+    width: 20%;
   }
+  .logoContainer {
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // gap: 2rem;
+    img {
+      width: 90%;
+    }
+    h2 {
+      font-weight: $thick;
+      font-size: $large;
+      text-align: center;
+    }
+  }
+  .line {
+    width: 90%;
+    margin: 1em 1em 2em 1em;
+  }
+
 }
 
 .schedule {
@@ -42,15 +65,12 @@
   margin: 2rem 0;
   padding: 0 $spacing;
   width: 100%;
-  // background-color: $black;
+
   background-color: $white;
   color: $black;
 }
 
 
-// body {
-//   font-family: $font-family;
-// }
 
 .layout {
   display: flex;
@@ -62,6 +82,9 @@
   // html {
   //   font-size: 12px;
   // }
+  .sidebar {
+    width: 100%;
+  }
 
   .layout {
     flex-direction: column;
