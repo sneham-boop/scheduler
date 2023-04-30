@@ -27,9 +27,10 @@ export default function Appointment(props) {
   );
 
   const save = (name, interviewer) => {
+    console.log("New interviewer or student assigned.", interviewer);
     const interview = {
       student: name,
-      interviewer,
+      interviewer_id: interviewer,
     };
 
     transition(SAVING, true);

@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     // Process a DELETE request
     if (req.method === "DELETE") {
       const { id } = req.query;
-      console.log("This is the id in req.body", req.query);
+      // console.log("This is the id in req.body", req.query);
       if (!id) {
         console.log("No appt ID was found!");
         res.json({
@@ -22,14 +22,20 @@ export default async function handler(req, res) {
           success: false,
         });
       }
-      console.log("Appt id to be deleted received at server.", id);
+      // console.log("Appt id to be deleted received at server.", id);
 
       const result = await db.collection("appointments").findOneAndUpdate(
-        { id: parseInt(id) },
+        { _id: new ObjectId(id) },
         [
+          
           {
             $set: {
-              interview: null,
+              "interview.student": "",
+            },
+          },
+          {
+            $set: {
+              "interview.interviewer_id": null,
             },
           },
         ],
@@ -38,22 +44,22 @@ export default async function handler(req, res) {
         }
       );
 
-      const daysUpdate = await db.collection("days").findOneAndUpdate(
-        { appointments: id },
-        {
-          $inc: {
-            spots: 1,
-          },
-        },
-        {
-          returnDocument: "after",
-        }
-      );
+      // const daysUpdate = await db.collection("days").findOneAndUpdate(
+      //   { appointments: id },
+      //   {
+      //     $inc: {
+      //       spots: 1,
+      //     },
+      //   },
+      //   {
+      //     returnDocument: "after",
+      //   }
+      // );
 
-      console.log("Deleted a document", result, daysUpdate);
+      console.log("Deleted a document", result);
 
-      if (result.modifiedCount === 1 && daysUpdate.modifiedCount === 1)
-        res.json(result);
+      if (result.lastErrorObject.updatedExisting === true)
+        res.json(result.value);
       else
         res.json({
           message: `Failed to delete this appointment ${id}`,
@@ -83,7 +89,7 @@ export default async function handler(req, res) {
           },
           {
             $set: {
-              "interview.interviewer_id": interview.interviewer,
+              "interview.interviewer_id": interview.interviewer_id,
             },
           },
         ],
