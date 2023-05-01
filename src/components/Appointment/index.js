@@ -27,7 +27,6 @@ export default function Appointment(props) {
   );
 
   const save = (name, interviewer) => {
-    console.log("New interviewer or student assigned.", interviewer);
     const interview = {
       student: name,
       interviewer_id: interviewer,
@@ -61,7 +60,7 @@ export default function Appointment(props) {
   return (
     <article className={styles.appointment} data-testid="appointment">
       {props.time && <Header time={props.time} />}
-      {mode === SHOW && (
+      {mode === SHOW && interview && (
         <Show
           student={interview.student}
           interviewer={interview.interviewer}

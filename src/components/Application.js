@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Application.module.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
@@ -21,7 +21,6 @@ const noto = Noto_Sans({
 export default function Application() {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
-
   const interviewers = getInterviewersForDay(state, state.day);
   const appointments = getAppointmentsForDay(state, state.day).map(
     (appointment) => {
@@ -38,6 +37,10 @@ export default function Application() {
       );
     }
   );
+
+  useEffect(()=>{
+
+  })
 
   return (
     <main className={styles.layout}>

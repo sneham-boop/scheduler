@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./DayListItem.module.scss";
+import useApplicationData from "@component/hooks/useApplicationData";
 
-export default function DayListItem({ name, spots, setDay, selected }) {
-
+export default function DayListItem({ name, setDay, selected, spots}) {
   const daySelected = selected ? "day-list__item--selected" : "";
   const dayFull = spots === 0 ? "day-list__item--full" : "";
 

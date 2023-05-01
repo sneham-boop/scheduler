@@ -9,7 +9,6 @@ const noto = Noto_Sans({
 });
 
 export default function Show({ student, interviewer, onEdit, onDelete }) {
-  // console.log("Inshow",interviewer);
   return (
     <main
       className={`${styles["appointment__card"]} ${styles["appointment__card--show"]}`}

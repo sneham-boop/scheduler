@@ -14,15 +14,12 @@ export default async function handler(req, res) {
     // Process a DELETE request
     if (req.method === "DELETE") {
       const { id } = req.query;
-      // console.log("This is the id in req.body", req.query);
       if (!id) {
-        console.log("No appt ID was found!");
         res.json({
           message: `Failed to delete this appt.`,
           success: false,
         });
       }
-      // console.log("Appt id to be deleted received at server.", id);
 
       const result = await db.collection("appointments").findOneAndUpdate(
         { _id: new ObjectId(id) },
@@ -44,20 +41,6 @@ export default async function handler(req, res) {
         }
       );
 
-      // const daysUpdate = await db.collection("days").findOneAndUpdate(
-      //   { appointments: id },
-      //   {
-      //     $inc: {
-      //       spots: 1,
-      //     },
-      //   },
-      //   {
-      //     returnDocument: "after",
-      //   }
-      // );
-
-      console.log("Deleted a document", result);
-
       if (result.lastErrorObject.updatedExisting === true)
         res.json(result.value);
       else
@@ -71,11 +54,6 @@ export default async function handler(req, res) {
     if (req.method === "PUT") {
       const { id } = req.query;
       const { interview } = req.body;
-      console.log(
-        "Update request for appointment received, id & interview",
-        parseInt(id),
-        interview
-      );
 
       // res.json({id, interview});
       // return;
@@ -98,7 +76,6 @@ export default async function handler(req, res) {
           returnDocument: "after",
         }
       );
-      console.log("Response back from database",response);
 
       res.json(response);
     }

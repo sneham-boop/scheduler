@@ -16,7 +16,6 @@ export default async function handler(req, res) {
       const { colors: colours } = req.body;
 
       if (!colours) {
-        console.log("No colors were found!");
         res.json({
           message: `Failed to add new day`,
           success: false,
