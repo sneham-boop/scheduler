@@ -1,20 +1,16 @@
 # Interview Scheduler
 
-Interview Scheduler is single page a React JS based front-end application. It also uses HTML, CSS3 and SASS. 
+Interview Scheduler is single page React JS & MongoDB based full-stack application. It is live and deployed at: https://scheduler-sm.vercel.app/
 
-It uses the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) as its API server to allow for data persistence. Follow the steps in the README file for the scheduler-api to set this up separately. A few additional steps are provided below to help with any setbacks.
-
-This application also supports testing via the Jest, Storybook and Cypress frameworks. Testing via the Cypress framework requires an additional database to be setup and instructions are included below.
+<!-- This application also supports testing via the Jest, Storybook and Cypress frameworks. Testing via the Cypress framework requires an additional database to be setup and instructions are included below. -->
 
 ## Dependencies
 
-- axios
-- classnames
-- normalize.css
-- react 
-- react-dom 
-- react-scripts
-- cypress@9.7.0 (only if end-to-end testing will be done with cypress)
+- NextJS
+- React 
+- MongoDB
+- Axios
+- Cypress@9.7.0 (only if end-to-end testing will be done with cypress)
 
 ## Application snapshots
 
@@ -25,7 +21,7 @@ This application also supports testing via the Jest, Storybook and Cypress frame
 
 2. Add a new appointment
 
-![Add a new appointment](./documents/images/Add_a_new_apppointment.png)
+![Add a new appointment](./documents/images/Add_new.png)
 
 
 3. Edit or delete an existing appointment
@@ -35,44 +31,45 @@ This application also supports testing via the Jest, Storybook and Cypress frame
 
 4. Edit an appointment
 
-![Edit an appointment](./documents/images/Edit_existing_appointment.png)
+![Edit an appointment](./documents/images/Edit%20_existing.png)
 
 
 5. Delete an appointment
 
-![Main page](./documents/images/Confirm_before_delete.png)
+![Main page](./documents/images/Delete_existing.png)
 
 
 ## Getting Started
 1. Clone this repo to a folder named `scheduler` and enter `cd scheduler` on your CLI.
-2. Run `yarn install` on your CLI to install all dependencies.
+2. Run `npm install` on your CLI to install all dependencies.
 
 ### Database Setup
-A test database must be created with seed data in it to allow for data persistence. This must have been done in the steps for the scheduler-api above, but here are some steps below to make sure nothing was missed.
+A test database must be created with seed data in it to allow for data persistence. 
 
-1. Clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) repo. `cd scheduler-api`
-2. `npm install` to add all dependencies.
-3. Start the PostgreSQL server by using the `psql` command in a second CLI window.
-4. Change the .env.example file as noted in the scheduler-api README.
-5. Check existing roles for your machine with `\du`. If a `development` role does not exist, create one with the following command
-`CREATE ROLE development WITH SUPERUSER;`. Note that your current role must be a superuser to be able to create a new role.
-6. Create the database using `CREATE DATABASE scheduler_development;`
-7. Connect to the db using `\c scheduler_development`
-8. In your scheduler-api CLI run `npm start` to start the server. You should see `Listening on port 8001 in test mode.` in your CLI.
-9. Add seed data using the browser to navigate to <http://localhost:8001/api/debug/reset>
-10. If the database is set up properly, you should see the relevant days data when you visit <http://localhost:8001/api/days>
+1. Create a .env file in the root of the directory like the .env.example file and add your own connection string where it says <YOUR_URI>
+2. Next, you will need to create the database itself. I will not be including full instructions to do this step. You can follow MongoDB's instructions to do this [here](https://learn.mongodb.com/courses/getting-started-with-mongodb-atlas).
+
+3. Add a database named `schedular` to your M0 cluster. Add three collections, days, appointments and interviewers. Take a look a the schema required here: 
+
+    A. Days: https://scheduler-sm.vercel.app/api/days
+    B. Appointments: https://scheduler-sm.vercel.app/api/appointments
+    C: Interviewers: https://scheduler-sm.vercel.app/api/interviewers
+
+4. You can use the files appointments.json, days.json, interviewers.json to seed the database you create.
+
+5. If the database & env file is set up properly, you should see the relevant days data when you visit </api/days>
 
 ### Application Setup
 1. The next steps assume your database was setup and seeded properly in the Database Setup section.
-2. Start the Webpack Development Server using the `npm start` command in your scheduler CLI. The app will be served at <http://localhost:3000/>. You should see a `Compiled successfully!` message on the CLI.
+2. Start the NextJS server using the `npm run dev` command in your scheduler CLI. The app will be typically served at <http://localhost:3000/>. 
 3. Go to <http://localhost:3000/> in Google Chrome to access the application.
-4. Test data from the database we setup for the scheduler-api must be visible at this time. To confirm - the day Monday should show one appointment with Sylvia Palmer for student Archie Cohen. This ensures your data was loaded properly.
+4. Test data from the database we setup must be visible at this time. 
 5. Upon hovering an existing appointment, a user may edit or cancel it.
 6. User will be asked to confirm their choice before deleting an appointment.
 7. User may add a new appointment in any of the empty spots available by clicking the +/add button.
 7. Data should persist after each change.
 
-## Testing
+<!-- ## Testing
 
 1. Storybook: `yarn run storybook`
 2. Jest: `yarn test`
@@ -85,12 +82,12 @@ A test database must be created with seed data in it to allow for data persisten
     `SELECT * FROM days JOIN appointments ON appointments.day_id = days.id LEFT JOIN interviews ON interviews.appointment_id = appointments.id ORDER BY appointments.id;`. You should see a single appointment for Archie Cohen on Monday.
     - Next, we can run Cypress in our CLI for scheduler via `yarn run cypress`. 
 
-    
+     -->
 ## Known issues
 
 1. This application has only been tested in Google Chrome so far therefore behavior could be unexpected in other browsers.
 2. The seed data is fake data.
-3. This setup process assumes user has PostgreSQL database from the scheduler API properly setup.
-4. There are currently no ways to trigger email updates to the interviewer or the student.
+3. This setup process assumes user has the Mongodb database `schedular` properly setup.
+
 
 
