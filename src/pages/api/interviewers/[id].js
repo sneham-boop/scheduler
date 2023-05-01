@@ -14,15 +14,12 @@ export default async function handler(req, res) {
     // Process a DELETE request
     if (req.method === "DELETE") {
       const { id } = req.query;
-      console.log("This is the id in req.body", req.query);
       if (!id) {
-        console.log("No palette ID was found!");
         res.json({
           message: `Failed to delete this palette.`,
           success: false,
         });
       }
-      console.log("Palette id to be deleted received at server.", id);
 
       const result = await db
         .collection("palettes")

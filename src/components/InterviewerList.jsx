@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 export default function InterviewerList(props) {
   const { interviewers, value, onChange } = props;
-  console.log(interviewers, value)
   return (
     <section className={styles.interviewers}>
       <h4

@@ -29,7 +29,7 @@ export default function Appointment(props) {
   const save = (name, interviewer) => {
     const interview = {
       student: name,
-      interviewer,
+      interviewer_id: interviewer,
     };
 
     transition(SAVING, true);
@@ -60,7 +60,7 @@ export default function Appointment(props) {
   return (
     <article className={styles.appointment} data-testid="appointment">
       {props.time && <Header time={props.time} />}
-      {mode === SHOW && (
+      {mode === SHOW && interview && (
         <Show
           student={interview.student}
           interviewer={interview.interviewer}

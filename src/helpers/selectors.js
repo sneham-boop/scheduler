@@ -4,11 +4,6 @@ export const getAppointmentsForDay = (state, day) => {
   const appointmentsForDay = [];
 
   days.forEach((element) => {
-    // if (element.name === day) {
-    //   element.appointments.map((apt) =>
-    //     appointmentsForDay.push(appointments[apt])
-    //   );
-    // }
     if (element.name === day) {
       appointments.forEach((appointment) => {
         if (element._id === appointment.day_id) {
@@ -17,7 +12,6 @@ export const getAppointmentsForDay = (state, day) => {
       });
     }
   });
-  // console.log("Here are the appointments for today.", appointmentsForDay);
   return appointmentsForDay;
 };
 
@@ -25,7 +19,6 @@ export const getAppointmentsForDay = (state, day) => {
 // to the interview data replacing the id of the
 // interviewer
 export const getInterview = (state, interview) => {
-  console.log("I got interview", interview)
   if (interview.interviewer_id === null) return null;
 
   const { interviewers } = state;
@@ -37,7 +30,6 @@ export const getInterview = (state, interview) => {
       int.interviewer = interviewer;
     }
   }
-  console.log("Here's the interview", int);
   return int;
 };
 
@@ -47,9 +39,6 @@ export const getInterviewersForDay = (state, currentDay) => {
   const interviewersForDay = [];
 
   days.forEach((day) => {
-    // if (element.name === day) {
-    //   element.interviewers.map((i) => interviewersForDay.push(interviewers[i]));
-    // }
     if (day.name === currentDay) {
       day.interviewers.map((id) => {
         interviewers.filter((interviewer) => {
@@ -60,6 +49,5 @@ export const getInterviewersForDay = (state, currentDay) => {
       });
     }
   });
-  // console.log("Here's the interviewers for the day", interviewersForDay);
   return interviewersForDay;
 };
